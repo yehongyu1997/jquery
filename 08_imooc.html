@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>imooc</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .box0 {
+        width: 830px;
+        margin: 30px auto;
+        border: 1px solid #000;
+      }
+      .box0 h3 {
+        line-height: 30px;
+        background-color: skyblue;
+        border: 1px solid #000;
+        cursor: pointer;
+      }
+      .box0 .box1,
+      .box0 .box2,
+      .box0 .box3,
+      .box0 .box4 {
+        width: 830px;
+        height: 360px;
+      }
+      .box0 .box1 ul,
+      .box0 .box2 ul,
+      .box0 .box3 ul,
+      .box0 .box4 ul {
+        float: left;
+        width: 120px;
+        height: 208px;
+      }
+      .box0 .box1 ul li,
+      .box0 .box2 ul li,
+      .box0 .box3 ul li,
+      .box0 .box4 ul li {
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 8px;
+        background-color: rgb(211, 197, 197);
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .box0 .box1 ul li.licur,
+      .box0 .box2 ul li.licur,
+      .box0 .box3 ul li.licur,
+      .box0 .box4 ul li.licur {
+        background-color: pink;
+      }
+      .box0 .box4 .neirong4,
+      .box0 .box4 .neirong4,
+      .box0 .box4 .neirong4,
+      .box0 .box4 .neirong4 {
+        float: left;
+        width: 710px;
+        height: 320px;
+        background-color: rgb(238, 234, 196);
+        border-radius: 4px;
+      }
+      .box0 .box1 .neirong1 p ,
+      .box0 .box2 .neirong2 p ,
+      .box0 .box3 .neirong3 p ,
+      .box0 .box4 .neirong4 p {
+        display: none;
+      }
+      .box0 .box1 .neirong1 p.pcur,
+      .box0 .box2 .neirong2 p.pcur,
+      .box0 .box3 .neirong3 p.pcur,
+      .box0 .box4 .neirong4 p.pcur {
+        display: block;
+      }
+      .box0 .inn {
+          display: none;
+      }
+     .box0 .inn.no1{
+         display: block;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="box0">
+      <h3>阶段一： Python零基础入门</h3>
+      <div class="box1 inn no1">
+        <ul>
+          <li class="licur">步骤一</li>
+          <li>步骤二</li>
+          <li>步骤三</li>
+          <li>步骤四</li>
+        </ul>
+        <div class="neirong1">
+          <p class="pcur">步骤1内容</p>
+          <p>步骤2内容</p>
+          <p>步骤3内容</p>
+          <p>步骤4内容</p>
+        </div>
+      </div>
+      <h3>阶段二： Python操作三大数据库</h3>
+      <div class="box2 inn">
+        <ul>
+          <li class="licur">步骤一</li>
+          <li>步骤二</li>
+          <li>步骤三</li>
+          <li>步骤四</li>
+        </ul>
+        <div class="neirong2">
+          <p class="pcur">步骤1内容</p>
+          <p>步骤2内容</p>
+          <p>步骤3内容</p>
+          <p>步骤4内容</p>
+        </div>
+      </div>
+      <h3>阶段三： 从网页搭建入门Python Web</h3>
+      <div class="box3 inn">
+        <ul>
+          <li class="licur">步骤一</li>
+          <li>步骤二</li>
+          <li>步骤三</li>
+          <li>步骤四</li>
+        </ul>
+        <div class="neirong3">
+          <p class="pcur">步骤1内容</p>
+          <p>步骤2内容</p>
+          <p>步骤3内容</p>
+          <p>步骤4内容</p>
+        </div>
+      </div>
+      <h3>阶段四： 入门主流框架Scrapy与爬虫项目实战</h3>
+      <div class="box4 inn">
+        <ul>
+          <li class="licur">步骤一</li>
+          <li>步骤二</li>
+          <li>步骤三</li>
+          <li>步骤四</li>
+        </ul>
+        <div class="neirong4 ">
+          <p class="pcur">步骤1内容</p>
+          <p>步骤2内容</p>
+          <p>步骤3内容</p>
+          <p>步骤4内容</p>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(".box0 h3").click(function() {
+        // 检查该h3之后的兄弟现在是不是能看见
+        // 如果不能看见，那么将其展开
+        // 如果能看见，就将其合上
+        if (
+          !$(this)
+            .next()
+            .is(":visible")
+        ) {
+          // 此步为把所有inn都先合上
+          $(".inn").slideUp();
+          $(this)
+            .next()
+            .slideDown();
+        } else {
+          $(this)
+            .next()
+            .slideUp();
+        }
+      });
+      $(".box0 .box4 ul li ").click(function() {
+        $(this)
+          .addClass("licur")
+          .siblings()
+          .removeClass("licur");
+        var n = $(this).index();
+        $(".box0 .box4 .neirong4 p")
+          .eq(n)
+          .addClass("pcur")
+          .siblings()
+          .removeClass("pcur");
+      });
+      $(".box0 .box3 ul li ").click(function() {
+        $(this)
+          .addClass("licur")
+          .siblings()
+          .removeClass("licur");
+        var m = $(this).index();
+        $(".box0 .box3 .neirong3 p")
+          .eq(m)
+          .addClass("pcur")
+          .siblings()
+          .removeClass("pcur");
+      });
+      $(".box0 .box2 ul li ").click(function() {
+        $(this)
+          .addClass("licur")
+          .siblings()
+          .removeClass("licur");
+        var o= $(this).index();
+        $(".box0 .box2 .neirong2 p")
+          .eq(o)
+          .addClass("pcur")
+          .siblings()
+          .removeClass("pcur");
+      });
+      $(".box0 .box1 ul li ").click(function() {
+        $(this)
+          .addClass("licur")
+          .siblings()
+          .removeClass("licur");
+        var p = $(this).index();
+        $(".box0 .box1 .neirong1 p")
+          .eq(p)
+          .addClass("pcur")
+          .siblings()
+          .removeClass("pcur");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .carousel {
+        width: 900px;
+        height: 500px;
+        border: 1px solid #ccc;
+        margin: 40px auto;
+        position: relative;
+      }
+
+      .carousel ul {
+        list-style: none;
+      }
+
+      .carousel ul li {
+        width: 900px;
+        height: 500px;
+        position: absolute;
+        display: none;
+      }
+
+      .carousel li.no0 {
+        display: block;
+      }
+
+      .carousel .btn {
+        height: 40px;
+        width: 40px;
+        background-color: orange;
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        border-radius: 50%;
+      }
+
+      .carousel .leftbtn {
+        left: 10px;
+      }
+
+      .carousel .rightbtn {
+        right: 10px;
+      }
+
+      .carousel ol {
+        list-style: none;
+        position: absolute;
+        height: 30px;
+        width: 200px;
+
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .carousel ol li {
+        float: left;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        margin-right: 8px;
+        background-color: rgba(255, 255, 255, 0.658);
+        cursor: pointer;
+      }
+
+      .carousel ol li.cur {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 呼吸轮播 -->
+    <div class="carousel" id="carousel">
+      <ul>
+        <li class="no0">
+          <img src="images/0.jpg" alt="" />
+        </li>
+        <li><img src="images/1.jpg" alt="" /></li>
+        <li><img src="images/2.jpg" alt="" /></li>
+        <li><img src="images/3.jpg" alt="" /></li>
+        <li><img src="images/4.jpg" alt="" /></li>
+      </ul>
+      <!-- 放置两个切换按钮 -->
+      <a href="javascript:;" id="leftbtn" class="leftbtn btn"></a>
+      <a href="javascript:;" id="rightbtn" class="rightbtn btn"></a>
+      <ol>
+        <li class="cur"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      var idx = 0;
+      $("#rightbtn").click(function() {
+        //如果li在进行动画，那么不能进行新的动画。
+
+        if ($("#carousel ul li").is(":animated")) {
+          return;
+        }
+        $("#carousel ul li")
+          .eq(idx)
+          .fadeOut(600);
+        idx++;
+        if (idx > 4) {
+          idx = 0;
+        }
+        $("#carousel ul  li")
+          .eq(idx)
+          .fadeIn(600);
+        $("#carousel ol li")
+          .eq(idx)
+          .addClass("cur")
+          .siblings()
+          .removeClass("cur");
+      });
+      //   -------------------------------------------------------
+      $("#leftbtn").click(function() {
+        //如果li在进行动画，那么不能进行新的动画。
+
+        if ($("#carousel ul li").is(":animated")) {
+          return;
+        }
+        $("#carousel ul li")
+          .eq(idx)
+          .fadeOut(600);
+        idx--;
+        if (idx < 0) {
+          idx = 4;
+        }
+        $("#carousel ul  li")
+          .eq(idx)
+          .fadeIn(600);
+        $("#carousel ol li")
+          .eq(idx)
+          .addClass("cur")
+          .siblings()
+          .removeClass("cur");
+      });
+      // -----------------------------------------------------
+      // 点击小圆点做的事情
+      $("#carousel ol li").click(function() {
+        // 当前的图淡出
+        // 让idx号li淡出，eq表示序号（从0开始，英语equal的意思），fadeOut表示淡出
+        $("#carousel ul li")
+          .eq(idx)
+          .fadeOut(600);
+        // 这样的写法就表示你点击的小圆点序号
+        idx = $(this).index();
+        // 让新idx这个图淡入
+        $("#carousel ul li")
+          .eq(idx)
+          .fadeIn(600);
+        // 让第idx那个小圆点加cur，兄弟们都去掉cur
+        $("#carousel ol li")
+          .eq(idx)
+          .addClass("cur")
+          .siblings()
+          .removeClass("cur");
+      });
+      // ---------------------------------------------------------
+      //
+      var lock = true;
+      $("#carousel").mouseenter(function() {
+        lock = false;
+      });
+
+      $("#carousel").mouseleave(function() {
+        lock = true;
+      });
+
+      setInterval(function() {
+        if (lock) {
+          $("#rightbtn").trigger("click");
+        }
+      }, 2000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><input type="text" id="kuang"> <button id="btn">按我增加水果</button><p>
+        <ul id="list">
+
+        </ul>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $('#btn').click(function(){
+            var neirong = $('#kuang').val();
+            $('<li> '+neirong+'<button>删除</button></li>').appendTo('#list');
+            $('#kuang').val('');
+            $('#kuang').focus();
+        })
+        // 事件委托delegate()括号内共有3个参数，分别是  标签名，click，function
+        $('#list').delegate('button','click',function(){
+            $(this).parent().remove();
+        })
+    </script>
+</body>
+</html>

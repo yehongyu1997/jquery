@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+     .box {
+        position: relative;
+        height: 288px;
+        width: 380px;
+        margin: 100px auto;
+        background-color: pink;
+        overflow: hidden;
+      }
+      .box #list1 {
+        
+        height: 2000px;
+        position: relative;
+      }
+      .box #list1 li{
+        width: 380px;     
+        height: 230px;
+        
+      }
+     
+      .box #list2 {
+          width: 380px;
+          height: 58px;
+          position: absolute;
+          top: 230px;
+          background-color: rgb(20, 211, 100);
+      }
+      .box #list2 li{
+           float: left;
+           width: 68px;
+           height: 52px;
+          background-color: #000;
+          /* padding :zuo you  */
+          padding: 3px 4px  3px 4px;
+      }
+      .box #list2 li img {
+          width: 100%;
+          height: 100%;
+      }
+      .box #list2 li.cur{
+          background-color: orange;
+      }
+      .box #btn {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 10px;
+          width: 10px;
+          background-color: #fff;
+      }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <div id="btn"></div>
+        <ul id="list1">
+            <li><img src="images/001.jpg" alt=""  /></li>
+            <li><img src="images/002.jpg" alt="" /></li>
+            <li><img src="images/003.jpg" alt="" /></li>
+            <li><img src="images/004.jpg" alt="" /></li>
+            <li><img src="images/005.jpg" alt="" /></li>
+        </ul>
+       <ul id="list2">
+          <li class="cur"><img src="images/001.jpg" alt="" ></li>
+          <li><img src="images/002.jpg" alt=""></li>
+          <li><img src="images/003.jpg" alt=""></li>
+          <li><img src="images/004.jpg" alt=""></li>
+          <li><img src="images/005.jpg" alt=""></li>
+       </ul>
+    </div> 
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // 声明全局变量
+        var idx = 0;
+        // 把第0个li克隆添加都到list的最后一个，这样就有6个li，下标是0-5
+        $('#box #list1 li').eq(0).clone().appendTo('#box #list1');
+        // ---------------------------------------------------------------------
+        // 鼠标进入#list2 li中
+        $('#box #list2 li').mouseenter(function(){
+            // idx为触碰的Li的下标序号
+            idx = $(this).index();
+            // if($('#box #list1').is(':animated')){
+            //     return;
+            // }
+            // 进行运动
+            $('#box #list1 ').animate({'top':-230*idx },200,function(){
+                if(idx>5){
+                    // 当下标大于5的时候，让idx重置为0
+                idx=0;
+                // 在执行第5个li到第六个li切换的过程中，立即把top值拉为0
+                $('#box #list1').css('top', 0);
+            }
+            })
+            // 给对应的对应的list2中的li添加cur类，他的兄弟全部清除cur类
+            $('#box #list2 li').eq(idx % 5).addClass('cur').siblings().removeClass('cur');
+            
+        });
+        // --------------------------------------------------------------------------------
+        // 设置一个点击函数，下面的定时器来触发点击函数
+        $('#box #btn').click(function(){
+            idx++;
+            $('#box #list1 ').animate({'top':-230*idx },1000,function(){
+                if(idx>4){
+                idx=0;
+                $('#box #list1').css('top', 0);
+            }
+            })
+            $('#box #list2 li').eq(idx%5).addClass('cur').siblings().removeClass('cur');
+        })
+        // -----------------------------------------------------------------------------
+          // 定时器
+        var lock = true;
+        // 鼠标碰到大盒子，就关锁
+        $('#box ').mouseenter(function(){
+            lock = false;
+        });
+        // 鼠标离开大盒子，就开锁
+        $('#box').mouseleave(function(){
+            lock = true;
+        });
+        setInterval(function () {
+            // 如果锁是开着的，那么就触发点击按钮
+            if (lock) {
+                // 触发点击按钮
+                $('#box #btn').trigger('click');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
