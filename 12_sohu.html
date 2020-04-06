@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .box {
+        position: relative;
+        top: 30px;
+        left: 300px;
+        width: 930px;
+        height: 342px;
+      }
+      .box #list li {
+        width: 930px;
+        height: 342px;
+        position: absolute;
+        display: none;
+      }
+      .box #list li.no0 {
+        display: block;
+      }
+      .box .tab {
+        width: 554px;
+        height: 54px;
+        position: absolute;
+        bottom: 11px;
+        left: 50%;
+        margin-left: -275px;
+        overflow: hidden;
+      }
+
+      .box #list2 {
+        position: relative;
+        width: 200000px;
+        height: 54px;
+        margin-left: -656px;
+      }
+
+      .box #list2 li {
+        float: left;
+        width: 90px;
+        height: 48px;
+        margin-top: 2px;
+        margin-right: 15px;
+        padding: 3px;
+      }
+
+      .cur {
+        background-color: red;
+      }
+      .box #list2 li img {
+        width: 100%;
+        height: 100%;
+      }
+      .box .rightbtn,
+      .box .leftbtn {
+        position: absolute;
+        width: 28px;
+        height: 46px;
+        background-color: blue;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 46px;
+        font-size: 30px;
+        color: black;
+        cursor: pointer;
+      }
+      .box .leftbtn {
+        left: 130px;
+        bottom: 11px;
+      }
+
+      .box .rightbtn {
+        right: 150px;
+        bottom: 11px;
+      }
+      .box img {
+        width: 100%;
+        height: 100%;
+      }
+      .box .rightbtn:hover,
+      .box .leftbtn:hover {
+        background-color: skyblue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul id="list">
+        <li class="no0"><img src="images/6.jpg" alt="" /></li>
+        <li><img src="images/1.jpg" alt="" /></li>
+        <li><img src="images/2.jpg" alt="" /></li>
+        <li><img src="images/3.jpg" alt="" /></li>
+        <li><img src="images/4.jpg" alt="" /></li>
+        <li><img src="images/7.jpg" alt="" /></li>
+      </ul>
+      <div class="leftbtn"><</div>
+
+      <div class="tab">
+        <ul id="list2">
+          <li class="cur"><img src="images/6.jpg" alt="" /></li>
+          <li><img src="images/1.jpg" alt="" /></li>
+          <li><img src="images/2.jpg" alt="" /></li>
+          <li><img src="images/3.jpg" alt="" /></li>
+          <li><img src="images/4.jpg" alt="" /></li>
+          <li><img src="images/7.jpg" alt="" /></li>
+        </ul>
+      </div>
+      <div class="rightbtn">></div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      // 克隆100元素放到ul的最后，变魔术好像行不通，就用了这个方法
+      for (var i = 0; i < 1000; i++) {
+        $(".box #list2 li").eq(i).clone().appendTo(".box #list2");
+      }
+      var idx = 0;
+      // 右箭头点击事件
+      $(".box .rightbtn").click(function () {
+        if ($(".box #list2").is(":animated")) {
+          return;
+        }
+        idx++;
+        $(".box #list2 ").animate({ left: -110 * idx }, 500);
+      });
+      // 左箭头点击事件
+      $(".box .leftbtn").click(function () {
+        if ($(".box #list2").is(":animated")) {
+          return;
+        }
+        idx--;
+        $(".box #list2 ").animate({ left: -110 * idx }, 200);
+      });
+      // 鼠标进入
+      $(".box #list2 li").mouseenter(function () {
+        $(this).addClass("cur").siblings().removeClass("cur");
+        var n = $(this).index();
+        // 把所有的li全部fadeout
+        for (var k = 0; k < 999; k++) {
+        
+            $(".box #list li").eq(k).fadeOut(300);
+        }
+
+        $(".box #list li").eq(n % 6).fadeIn(300);
+        // 当前的li  fadein
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>爱前端滚动</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .box {
+        width: 1000px;
+        height: 400px;
+        /* background-color: rgb(206, 109, 109); */
+        margin: 30px auto;
+        overflow: hidden;
+        position: relative;
+      }
+      .box ul {
+        width: 5000px;
+        margin-left: -154px;
+      }
+      .box ul li {
+        position: absolute;
+        float: left;
+        width: 200px;
+        height: 400px;
+      }
+      .box ul li img {
+        width: 100%;
+        height: 100%;
+      }
+      .box ul li.no3 {
+        width: 200px;
+        height: 400px;
+        top: 0px;
+        left: 400px;
+      }
+      .box ul li.no4 {
+        top: 10px;
+        left: 630px;
+        width: 180px;
+        height: 380px;
+      }
+      .box ul li.no2 {
+        top: 10px;
+        left: 190px;
+        width: 180px;
+        height: 380px;
+      }
+      .box ul li.no5 {
+        top: 30px;
+        left: 830px;
+        width: 160px;
+        height: 360px;
+      }
+      .box ul li.no1 {
+        top: 30px;
+        left: 10px;
+        width: 160px;
+        height: 360px;
+      }
+      .box ul li.no6 {
+        top: 50px;
+        left: 1015px;
+        width: 140px;
+        height: 340px;
+      }
+      .box ul li.no0 {
+        top: 50px;
+        left: -155px;
+        width: 140px;
+        height: 340px;
+      }
+      .left {
+        float: left;
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+        background-color: rgb(57, 199, 204);
+        position: relative;
+        top: 180px;
+        left: 200px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+      }
+      .right {
+        float: right;
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+        background-color: rgb(57, 199, 204);
+        position: relative;
+        top: 180px;
+        right: 200px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+      }
+      .left:hover,
+      .right:hover {
+        background-color: rgb(95, 93, 218);
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left"><</div>
+    <div class="right">></div>
+    <div class="box">
+      <ul>
+        <li class="no0"><img src="images/ai1.jpg" alt="" /></li>
+        <li class="no1"><img src="images/ai2.jpg" alt="" /></li>
+        <li class="no2"><img src="images/ai3.jpg" alt="" /></li>
+        <li class="no3"><img src="images/ai4.jpg" alt="" /></li>
+        <li class="no4"><img src="images/ai5.jpg" alt="" /></li>
+        <li class="no5"><img src="images/ai6.jpg" alt="" /></li>
+        <li class="no6"><img src="images/ai7.jpg" alt="" /></li>
+      </ul>
+    </div>
+  </body>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    var styleArr = [];
+    // 遍历数组添加样式对象
+    for (var i = 0; i < $("li").length; i++) {
+      // push 方法 将新元素追加到一个数组中
+      styleArr.push({
+        width: $("li").eq(i).css("width"),
+        height: $("li").eq(i).css("height"),
+        left: $("li").eq(i).css("left"),
+        top: $("li").eq(i).css("top"),
+      });
+    }
+    //  console.log(styleArr);
+    var classNameArr = [];
+    // 遍历添加类名
+    for (var i = 0; i < $("li").length; i++) {
+      classNameArr.push($("li").eq(i).attr("class"));
+    }
+    //  console.log(classNameArr);
+    // 右按钮点击事件
+    $(".right").click(function () {
+      if ($("li").is(":animated")) {
+        return;
+      }
+      // 后面的元素走到前面上一个位置
+      for (var i = 1; i < $("li").length; i++) {
+        $(".no" + i).animate(styleArr[i - 1], 300);
+      }
+      // 0位置的li直接更改css样式，切换到6的位置
+      $(".no0").css(styleArr[6], 300);
+
+      //运动结束后，要让li的类名和位置统一，切换类名
+    //   尾插第一个元素
+      classNameArr.unshift(classNameArr.pop());
+      // console.log(classNameArr);
+
+      // 循环给li添加新的类名，在把尾插过后的类名重新从0-6赋值
+      for (var i = 0; i < $("li").length; i++) {
+        $("li").eq(i).attr("class", classNameArr[i]);
+      }
+    });
+    //左按钮点击事件
+    $(".left").click(function () {
+      if ($("li").is(":animated")) {
+        return;
+      }
+      // 后面的元素走到前面上一个位置
+      for (var i = 0; i < $("li").length - 1; i++) {
+        $(".no" + i).animate(styleArr[i + 1], 300);
+      }
+      // 6位置的li直接更改css样式，切换到0的位置
+      $(".no6").css(styleArr[0], 300);
+
+      //运动结束后，要让li的类名和位置统一，切换类名
+      classNameArr.push(classNameArr.shift());
+
+      // 循环给li添加新的类名
+      for (var i = 0; i < $("li").length; i++) {
+        $("li").eq(i).attr("class", classNameArr[i]);
+      }
+    });
+  </script>
+</html>

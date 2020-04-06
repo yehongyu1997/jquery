@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多级折叠菜单</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .tab {
+        width: 300px;
+        margin: 30px auto;
+      }
+      .tab h2 {
+        height: 30px;
+        width: 300px;
+        background-color: rgb(214, 226, 146);
+        border: 1px solid #000;
+        border-radius: 8px;
+        text-indent: 1em;
+      }
+      .tab h3 {
+        height: 30px;
+        width: 300px;
+        line-height: 30px;
+        border: 1px solid #000;
+        border-radius: 8px;
+        text-indent: 1em;
+        cursor: pointer;
+        color: orange;
+      }
+      .tab .con1,
+      .tab .con2,
+      .tab .con3,
+      .tab .con4,
+      .tab .con1 .con11,
+      .tab .con2 .con22,
+      .tab .con3 .con33,
+      .tab .con3 .con333,
+      .tab .con3 .con3333 {
+        width: 300px;
+        display: none;
+      }
+      .tab p {
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid #000;
+        border-radius: 8px;
+        text-indent: 1em;
+        cursor: pointer;
+        font-size: 10px;
+      }
+      .tab .con1 .con11 p {
+        height: 20px;
+      }
+      .tab span{
+          color: green;
+          font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab">
+      <h2>overview</h2>
+      <h3> <span>></span>标题1</h3>
+      <div class="con1">
+        <p id="para1"> <span>></span>内容1</p>
+        <div class="con11">
+          <p>内容1的内容</p>
+        </div>
+        <p>内容11</p>
+      </div>
+      <h3> <span>></span>标题2</h3>
+      <div class="con2">
+        <p>内容2</p>
+        <p id="para2"> <span>></span>内容22</p>
+        <div class="con22">
+          <p>内容22的内容</p>
+        </div>
+      </div>
+      <h3><span>></span>标题3</h3>
+      <div class="con3">
+        <p> 内容3</p>
+        <p id="para33"> <span>></span>内容33</p>
+        <div class="con33">
+          <p>内容33的内容</p>
+        </div>
+        <p id="para333"> <span>></span>内容333</p>
+        <div class="con333">
+          <p>内容333的内容</p>
+        </div>
+        <p id="para3333"> <span>></span>内容3333</p>
+        <div class="con3333">
+          <p>内容3333的内容</p>
+        </div>
+      </div>
+      <h3> <span>></span>标题4</h3>
+      <div class="con4">
+        <p>内容4</p>
+        <p>内容44</p>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(".tab h3").click(function () {
+        if (!$(this).next().is(":visible")) {   
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+      $(".tab .con1 #para1").click(function () {
+        if (!$(this).next().is(":visible")) {
+          $(".con11").slideUp();
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+      $(".tab .con2 #para2").click(function () {
+        if (!$(this).next().is(":visible")) {
+          // 此步为把所有inn都先合上
+          $(".con22").slideUp();
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+      $(".tab .con3 #para33").click(function () {
+        if (!$(this).next().is(":visible")) {
+
+          $(".con33").slideUp();
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+      $(".tab .con3 #para333").click(function () {
+        if (!$(this).next().is(":visible")) {
+        
+          $(".con333").slideUp();
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+      $(".tab .con3 #para3333").click(function () {
+        if (!$(this).next().is(":visible")) {
+          $(".con3333").slideUp();
+          $(this).next().slideDown();
+        } else {
+          $(this).next().slideUp();
+        }
+      });
+    </script>
+  </body>
+</html>

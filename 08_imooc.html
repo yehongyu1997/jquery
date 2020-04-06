@@ -66,9 +66,9 @@
         background-color: rgb(238, 234, 196);
         border-radius: 4px;
       }
-      .box0 .box1 .neirong1 p ,
-      .box0 .box2 .neirong2 p ,
-      .box0 .box3 .neirong3 p ,
+      .box0 .box1 .neirong1 p,
+      .box0 .box2 .neirong2 p,
+      .box0 .box3 .neirong3 p,
       .box0 .box4 .neirong4 p {
         display: none;
       }
@@ -79,11 +79,11 @@
         display: block;
       }
       .box0 .inn {
-          display: none;
+        display: none;
       }
-     .box0 .inn.no1{
-         display: block;
-     }
+      .box0 .inn.no1 {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -141,7 +141,7 @@
           <li>步骤三</li>
           <li>步骤四</li>
         </ul>
-        <div class="neirong4 ">
+        <div class="neirong4">
           <p class="pcur">步骤1内容</p>
           <p>步骤2内容</p>
           <p>步骤3内容</p>
@@ -151,31 +151,20 @@
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
-      $(".box0 h3").click(function() {
+      $(".box0 h3").click(function () {
         // 检查该h3之后的兄弟现在是不是能看见
         // 如果不能看见，那么将其展开
         // 如果能看见，就将其合上
-        if (
-          !$(this)
-            .next()
-            .is(":visible")
-        ) {
+        if (!$(this).next().is(":visible")) {
           // 此步为把所有inn都先合上
           $(".inn").slideUp();
-          $(this)
-            .next()
-            .slideDown();
+          $(this).next().slideDown();
         } else {
-          $(this)
-            .next()
-            .slideUp();
+          $(this).next().slideUp();
         }
       });
-      $(".box0 .box4 ul li ").click(function() {
-        $(this)
-          .addClass("licur")
-          .siblings()
-          .removeClass("licur");
+      $(".box0 .box4 ul li ").click(function () {
+        $(this).addClass("licur").siblings().removeClass("licur");
         var n = $(this).index();
         $(".box0 .box4 .neirong4 p")
           .eq(n)
@@ -183,11 +172,8 @@
           .siblings()
           .removeClass("pcur");
       });
-      $(".box0 .box3 ul li ").click(function() {
-        $(this)
-          .addClass("licur")
-          .siblings()
-          .removeClass("licur");
+      $(".box0 .box3 ul li ").click(function () {
+        $(this).addClass("licur").siblings().removeClass("licur");
         var m = $(this).index();
         $(".box0 .box3 .neirong3 p")
           .eq(m)
@@ -195,23 +181,17 @@
           .siblings()
           .removeClass("pcur");
       });
-      $(".box0 .box2 ul li ").click(function() {
-        $(this)
-          .addClass("licur")
-          .siblings()
-          .removeClass("licur");
-        var o= $(this).index();
+      $(".box0 .box2 ul li ").click(function () {
+        $(this).addClass("licur").siblings().removeClass("licur");
+        var o = $(this).index();
         $(".box0 .box2 .neirong2 p")
           .eq(o)
           .addClass("pcur")
           .siblings()
           .removeClass("pcur");
       });
-      $(".box0 .box1 ul li ").click(function() {
-        $(this)
-          .addClass("licur")
-          .siblings()
-          .removeClass("licur");
+      $(".box0 .box1 ul li ").click(function () {
+        $(this).addClass("licur").siblings().removeClass("licur");
         var p = $(this).index();
         $(".box0 .box1 .neirong1 p")
           .eq(p)
