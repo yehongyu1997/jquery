@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>爱奇艺推广</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .box {
+        width: 1310px;
+        height: 100px;
+       border: 1px solid #000;
+        position: relative;
+     /* overflow: hidden; */
+        left: 50%;
+        margin-left: -655px;
+      }
+      .box ul {
+        width: 9999px;
+        position: absolute;
+        transition: all 0.5s linear 0s;
+      }
+      .box ul li {
+        float: left;
+        height: 100px;
+        width: 210px;
+        position: absolute;
+      }
+      .box ul li.aqy0 {
+        left: -220px;
+        transition: all 0.5s linear 0s;
+        opacity: 0;
+      }
+      .box ul li.aqy1,
+      .box ul .no0 {
+        left: 0;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy2,
+      .box ul li.no1 {
+        left: 220px;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy3,
+      .box ul li.no2 {
+        left: 440px;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy4,
+      .box ul li.no3 {
+        left: 660px;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy5,
+      .box ul li.no4 {
+        left: 880px;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy6,
+      .box ul li.no5,
+      .box ul li.no6
+       {
+        left: 1100px;
+        transition: all 0.5s linear 0s;
+        opacity: 1;
+      }
+      .box ul li.aqy7
+       {
+        left: 1320px;
+        transition: all 0.5s linear 0s;
+        opacity: 0;
+      }
+      .box ul li.no7 {
+        left: 1540px;
+        transition: all 0.5s linear 0s;
+      }
+      .box ul li img {
+        width: 100%;
+        height: 100%;
+      }
+      .box ul li.aqy6 {
+        margin-right: 0px;
+      }
+      .box ul li.zhankai {
+        width: 0px;
+        height: 100px;
+        transition: all 0.5s linear 0s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box">
+        <ul>
+          <li class="aqy0 item"><img src="images/aqy0.jpg" alt="" /></li>
+          <li class="zhankai no0 ie"><img src="images/aqy00.jpg" alt="" /></li>
+          <li class="aqy1 item"><img src="images/aqy1.jpg" alt="" /></li>
+          <li class="zhankai no1 ie"><img src="images/aqy11.jpg" alt="" /></li>
+          <li class="aqy2 item"><img src="images/aqy2.jpg" alt="" /></li>
+          <li class="zhankai no2 ie"><img src="images/aqy22.jpg" alt="" /></li>
+          <li class="aqy3 item"><img src="images/aqy3.jpg" alt="" /></li>
+          <li class="zhankai no3 ie"><img src="images/aqy33.jpg" alt="" /></li>
+          <li class="aqy4 item"><img src="images/aqy4.jpg" alt="" /></li>
+          <li class="zhankai no4 ie"><img src="images/aqy44.jpg" alt="" /></li>
+          <li class="aqy5 item"><img src="images/aqy5.jpg" alt="" /></li>
+          <li class="zhankai no5 ie"><img src="images/aqy55.jpg" alt="" /></li>
+          <li class="aqy6 item"><img src="images/aqy6.jpg" alt="" /></li>
+          <li class="zhankai no6 ie"><img src="images/aqy66.jpg" alt="" /></li>
+          <li class="aqy7 item"><img src="images/aqy7.jpg" alt="" /></li>
+          <li class="zhankai no7 ie"><img src="images/aqy77.jpg" alt="" /></li>
+        </ul>
+      </div>
+    </div>
+    <button id="btn1">按我</button>
+    <button id="btn2">按我</button>
+  </body>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    var arr2 = [ "no0" ,"no1", "no2", "no3", "no4", "no5","no6","no7", ];
+    var arr1 = ["aqy0", "aqy1", "aqy2", "aqy3", "aqy4", "aqy5", "aqy6","aqy7",];
+    var $li1s = $(".box li.item");
+    var $li2s = $(".box li.ie");
+
+
+  
+    $("#btn2").click(function () {
+    
+  // toushan插尾
+      arr1.push(arr1.shift());
+      arr2.push(arr2.shift());
+      // 遍历每个li，让每个li成为对应项的类名
+      for (var i = 0; i < 8; i++) {
+        // 让第i个li成为数组中第i项的类名，神奇！
+        $li1s.eq(i).attr("class", arr1[i]);
+        $li2s.eq(i).attr("class", arr2[i]).addClass('zhankai');
+      }
+    });
+    // 点击左按钮
+    $("#btn1").click(function () {
+    
+      arr1.unshift(arr1.pop());
+      arr2.unshift(arr2.pop());
+      // 遍历每个li，让每个li成为对应项的类名
+      for (var i = 0; i < 8; i++) {
+        // 让第i个li成为数组中第i项的类名，神奇！
+        $li1s.eq(i).attr("class", arr1[i]);
+        $li2s.eq(i).attr("class", arr2[i]).addClass("zhankai");
+      }
+    });
+    $(".box .aqy1").mouseenter(function () {
+      $(".box .no1").css("width", 870);
+      $(".box .aqy2").css("left", 1100);
+      $(".box .aqy3").css("left", 1320);
+      $(".box .aqy4").css("left", 1540);
+      $(".box .aqy5").css("left", 1760);
+      $(".box .aqy6").css("left", 1880);
+     
+    });
+    //  第一张图片离开事件
+    $(".box  ").mouseleave(function () {
+      $(".box .no1").css("width", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+     
+    });
+    $(".box .aqy2").mouseenter(function () {
+      $(".box .no2").css("width", 870);
+      $(".box .no2").css("left", 220);
+      $(".box .aqy1").css("left", -220);
+      $(".box .aqy2").css("left", 0);
+      $(".box .aqy3").css("left", 1100);
+      $(".box .aqy4").css("left", 1320);
+      $(".box .aqy5").css("left", 1540);
+      $(".box .aqy6").css("left", 1760);
+      $(".box .aqy7").css("left", 1880);
+      $(".box .aqy0").css("left", -440);
+    });
+    //  第一张图片离开事件
+    $(".box   ").mouseleave(function () {
+        $(".box .no2").css("width", 0);
+      $(".box .no2").css("left", 440);
+      $(".box .aqy1").css("left", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1320);
+      $(".box .aqy0").css("left", -220);
+    });
+    // 第三张
+    $(".box .aqy3").mouseenter(function () {
+      $(".box .no3").css("width", 870);
+      $(".box .no3").css("left", 220);
+      $(".box .aqy1").css("left", -440);
+      $(".box .aqy2").css("left", -220);
+      $(".box .aqy3").css("left", 0);
+      $(".box .aqy4").css("left",1100);
+      $(".box .aqy5").css("left", 1540);
+      $(".box .aqy6").css("left", 1760);
+      $(".box .aqy7").css("left", 1880);
+      $(".box .aqy0").css("left", -440);
+    });
+    //  第3张图片离开事件
+    $(".box   ").mouseleave(function () {
+        $(".box .no3").css("width", 0);
+      $(".box .no3").css("left", 660);
+      $(".box .aqy1").css("left", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1320);
+      $(".box .aqy0").css("left", -220);
+    });
+    // 4
+    $(".box .aqy4").mouseenter(function () {
+      $(".box .no4").css("width", 870);
+      $(".box .no4").css("left", 220);
+      $(".box .aqy1").css("left", -440);
+      $(".box .aqy2").css("left", -220);
+      $(".box .aqy3").css("left", -220);
+      $(".box .aqy4").css("left",0);
+      $(".box .aqy5").css("left", 1100);
+      $(".box .aqy6").css("left", 1760);
+      $(".box .aqy7").css("left", 1880);
+      $(".box .aqy0").css("left", -440);
+    });
+    //  第3张图片离开事件
+    $(".box   ").mouseleave(function () {
+        $(".box .no4").css("width", 0);
+      $(".box .no4").css("left", 880);
+      $(".box .aqy1").css("left", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1320);
+      $(".box .aqy0").css("left", -220);
+    });
+    // 5
+    $(".box .aqy5").mouseenter(function () {
+      $(".box .no5").css("width", 870);
+      $(".box .no5").css("left", 220);
+      $(".box .aqy1").css("left", -440);
+      $(".box .aqy2").css("left", -220);
+      $(".box .aqy3").css("left", -220);
+      $(".box .aqy4").css("left",-220);
+      $(".box .aqy5").css("left", 0);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1880);
+      $(".box .aqy0").css("left", -440);
+    });
+    //  第3张图片离开事件
+    $(".box   ").mouseleave(function () {
+        $(".box .no5").css("width", 0);
+      $(".box .no5").css("left", 1100);
+      $(".box .aqy1").css("left", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1320);
+      $(".box .aqy0").css("left", -220);
+    });
+    // 6
+    $(".box .aqy6").mouseenter(function () {
+      $(".box .no6").css("width", 870);
+      $(".box .no6").css("left", 220);
+      $(".box .aqy1").css("left", -440);
+      $(".box .aqy2").css("left", -220);
+      $(".box .aqy3").css("left", -220);
+      $(".box .aqy4").css("left",-220);
+      $(".box .aqy5").css("left", 0);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1880);
+      $(".box .aqy0").css("left", -440);
+    });
+    //  第3张图片离开事件
+    $(".box   ").mouseleave(function () {
+        $(".box .no6").css("width", 0);
+      $(".box .no6").css("left", 1100);
+      $(".box .aqy1").css("left", 0);
+      $(".box .aqy2").css("left", 220);
+      $(".box .aqy3").css("left", 440);
+      $(".box .aqy4").css("left", 660);
+      $(".box .aqy5").css("left", 880);
+      $(".box .aqy6").css("left", 1100);
+      $(".box .aqy7").css("left", 1320);
+      $(".box .aqy0").css("left", -220);
+    });
+  </script>
+</html>

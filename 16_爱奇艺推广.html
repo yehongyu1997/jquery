@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .box {
+        width: 1310px;
+        height: 100px;
+        margin: 50px auto;
+
+        position: relative;
+        overflow: hidden;
+      }
+      .box ul {
+        width: 9999px;
+        position: absolute;
+        transition: all 0.5s linear 0s;
+        /* left: -220px; */
+      }
+      .box ul li {
+        float: left;
+        height: 100px;
+        width: 210px;
+      }
+      .box ul li.aqy0,
+      .box ul li.aqy1,
+      .box ul li.aqy2,
+      .box ul li.aqy3,
+      .box ul li.aqy4,
+      .box ul li.aqy5 {
+        margin-right: 10px;
+      }
+      .box ul li img {
+        width: 100%;
+        height: 100%;
+      }
+      .box ul li.aqy6 {
+        margin-right: 0px;
+      }
+      .box ul li.zhankai {
+        width: 0px;
+        height: 100px;
+        transition: all 0.5s linear 0s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul>
+      
+        <li class="aqy1"><img src="images/aqy1.jpg" alt="" /></li>
+        <li class="zhankai no1"><img src="images/aqy11.jpg" alt="" /></li>
+        <li class="aqy2"><img src="images/aqy2.jpg" alt="" /></li>
+        <li class="zhankai no2"><img src="images/aqy22.jpg" alt="" /></li>
+        <li class="aqy3"><img src="images/aqy3.jpg" alt="" /></li>
+        <li class="zhankai no3"><img src="images/aqy33.jpg" alt="" /></li>
+        <li class="aqy4"><img src="images/aqy4.jpg" alt="" /></li>
+        <li class="zhankai no4"><img src="images/aqy44.jpg" alt="" /></li>
+        <li class="aqy5"><img src="images/aqy5.jpg" alt="" /></li>
+        <li class="zhankai no5"><img src="images/aqy55.jpg" alt="" /></li>
+        <li class="aqy6"><img src="images/aqy6.jpg" alt="" /></li>
+        <li class="zhankai no6"><img src="images/aqy66.jpg" alt="" /></li>
+      </ul>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      // 第一张图片进入事件
+      $(".box .aqy1").mouseenter(function () {
+        $(".box .no1").css("width", 870);
+        $(".box .aqy2").css("margin-left", 10);
+      });
+      //  第一张图片离开事件
+      $(".box  .aqy1 ").mouseleave(function () {
+        $(".box .aqy1").css('left',-220);
+        $(".box .no1").css("width", 0);
+        $(".box .aqy2").css("margin-left", 0);
+      });
+      //  第2张图片进入事件
+      $(".box .aqy2").mouseenter(function () {
+       
+        $(".box .no2").css("width", 870);
+        $(".box .aqy3").css("margin-left", 10);
+      });
+      //  第2张图片离开事件
+      $(".box ").mouseleave(function () {
+        $(".box ul").css("left", 0);
+        $(".box .no2").css("width", 0);
+        $(".box .aqy3").css("margin-left", 0);
+      });
+      //  第3张图片进入事件
+      $(".box .aqy3").mouseenter(function () {
+        $(".box ul").css("left", -440);
+        $(".box .no3").css("width", 870);
+        $(".box .aqy4").css("margin-left", 10);
+      });
+      $(".box ").mouseleave(function () {
+        $(".box ul").css("left", 0);
+        $(".box .no3").css("width", 0);
+        $(".box .aqy4").css("margin-left", 0);
+      });
+      //  第4张图片进入事件
+      $(".box .aqy4").mouseenter(function () {
+        $(".box ul").css("left", -660);
+        $(".box .no4").css("width", 870);
+        $(".box .aqy5").css("margin-left", 10);
+      });
+      $(".box ").mouseleave(function () {
+        $(".box ul").css("left", 0);
+        $(".box .no4").css("width", 0);
+        $(".box .aqy5").css("margin-left", 0);
+      });
+      //  第5张图片进入事件
+      $(".box .aqy5").mouseenter(function () {
+        $(".box ul").css("left", -880);
+        $(".box .no5").css("width", 870);
+        $(".box .aqy6").css("margin-left", 10);
+      });
+      $(".box ").mouseleave(function () {
+        $(".box ul").css("left", 0);
+        $(".box .no5").css("width", 0);
+        $(".box .aqy6").css("margin-left", 0);
+      });
+      //  第6张图片进入事件
+      $(".box .aqy6").mouseenter(function () {
+        $(".box ul").css("left", -880);
+        $(".box .no6").css("width", 870);
+        $(".box .no6").css("margin-left", 10);
+      });
+      $(".box ").mouseleave(function () {
+        $(".box ul").css("left", 0);
+        $(".box .no6").css("width", 0);
+      });
+    </script>
+  </body>
+</html>
