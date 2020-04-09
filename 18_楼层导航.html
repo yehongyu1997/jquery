@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>楼层导航</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .navfix {
+      position: fixed;
+      right: 100px;
+      bottom: 100px;
+      background-color: rgb(250, 195, 251);
+    }
+    .navfix ul {
+      padding: 10px;
+      list-style: none;
+    }
+    .navfix ul li {
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+    }
+    .navfix ul li.cur {
+      background: orange;
+    }
+    .wrap {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .box {
+      height: 8000px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h3 id="h3">导航1</h3>
+    <img src="images/001.jpg" alt="" />
+    <h3 id="h3">导航2</h3>
+    <img src="images/002.jpg" alt="" />
+    <h3 id="h3">导航3</h3>
+    <img src="images/003.jpg" alt="" />
+    <h3 id="h3">导航4</h3>
+    <img src="images/004.jpg" alt="" />
+    <h3 id="h3">导航5</h3>
+    <img src="images/005.jpg" alt="" />
+  </div>
+  <div class="box"></div>
+  <div class="navfix" id="navfix">
+    <ul>
+      <li class="cur">导航1</li>
+      <li>导航2</li>
+      <li>导航3</li>
+      <li>导航4</li>
+      <li>导航5</li>
+    </ul>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      var $h3s = $('h3');
+      // 数组，存储每一个h3元素的净位置
+      var arr = [];
+      $h3s.each(function () {
+        arr.push($(this).offset().top);
+      });
+      arr.push(Infinity);
+      // 当前位置
+      var nowfloor = 0;
+      // 监听页面的卷动事件
+      $(window).scroll(function () {
+        // 得到当前的页面卷动值
+        var scrollTop = $(window).scrollTop();
+        // 遍历数组，判断用户当前在第几个楼层
+        for (var i = 0; i < arr.length; i++) {
+          if (scrollTop >= arr[i] && scrollTop <= arr[i + 1] - 30) {
+            break;
+          }
+        }
+        // 如果当前的楼层i和现在的楼层nowfloor不同，则进行楼层切换
+        if (nowfloor != i) {
+          // 改变信号量
+          nowfloor = i;
+          // 切换cur的位置
+          $('#navfix ul li').eq(nowfloor).addClass('cur').siblings().removeClass('cur');
+        }
+      });
+      $('#navfix ul li').click(function(){
+        // 得到当前li的序号
+        var idx=$(this).index();
+        console.log(idx);
+        
+        $('html, body').animate({
+                'scrollTop': arr[idx]
+            }, 300);
+            $('#navfix ul li').eq(idx).addClass('cur').siblings().removeClass('cur');
+      })
+    </script>
+</body>
+
+</html>

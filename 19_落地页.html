@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+    <div class="f0">
+        <h1>落地页展示</h1>
+    </div>
+    <div class="f1" id="f1">
+        <h2 class="actor">无惧逆光<br>笑容绽放</h2>
+        <h3 class="actor">AI HDR+ 以精准的人像分割算法，对面部进行分区域打光优化，配合多帧合成及 AI 智能处理，一如专业打光师，让你的脸部光线更加真实自然，逆光下笑容不再黯然失色。</h3>
+        <img src="images/md.jpg" class="img actor">
+    </div>
+    <div class="f2" id="f2">
+        <h2 class="actor">文档拍摄助手</h2>
+        <img src="images/files-1.png" class="file-1 actor">
+        <img src="images/files-2.png" class="file-2 actor">
+        <img src="images/files-4.png" class="file-3 actor">
+    </div>
+    <div class="f3" id="f3">
+        <div class="box"><img src="images/beijing.png" alt="">
+            <div class="box1">
+                <h3>超长焦镜头</h3>
+                <h2>10X 混合光学变焦<br>OIS</h2>
+            </div>
+           <div class="box2">
+               <h3 >
+                   108MP超清主摄
+               </h3>
+               <h2>2X光学变焦</h2>
+           </div>
+           <div class="box3">
+            <h3 >
+                12MP人像镜头
+            </h3>
+            <h2>超大感光元件</h2>
+        </div>
+        </div>
+     
+    </div>
+    <div class="f4" id="f4"></div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    // 定义一个信号量
+    var isInf1 = false;
+    var isInf2 = false;
+    var isInf3 = false;
+    // f1的净高度  ,注意top没有括号并不是一个函数,但是offset有括号
+    var f1_top = $('#f1').offset().top;
+    var f2_top = $('#f2').offset().top;
+    var f3_top = $('#f3').offset().top;
+    var f4_top = $('#f4').offset().top;
+
+    console.log($('#f3').offset().top);
+
+    // 判断是否进入f1层
+    $(window).scroll(function () {
+        var scrolltop = $(window).scrollTop();
+        //  console.log(scrolltop);
+        if (!isInf1 && scrolltop > f1_top - 250 && scrolltop < f2_top - 200) {
+            isInf1 = true;
+            console.log('进入了f1层');
+            $('#f1').addClass('cur')
+
+        } else if (isInf1 && (scrolltop > f2_top - 200 || scrolltop < f1_top - 250)) {
+            console.log('离开了f1层');
+            isInf1 = false;
+            $('#f1').removeClass('cur')
+        }
+        // 判断是否进人第2层
+        if (!isInf2 && scrolltop > f2_top - 200 && scrolltop < f3_top - 200) {
+            isInf2 = true;
+            console.log('进入了f2层');
+            $('#f2').addClass('cur')
+
+        } else if (isInf2 && (scrolltop > f3_top - 200 || scrolltop < f2_top - 200)) {
+            console.log('离开了f2层');
+            isInf2 = false;
+            $('#f2').removeClass('cur')
+        }
+        // 判断是否进入第3层
+        console.log($(window).scrollTop());
+
+        if (!isInf3 && scrolltop > f3_top -200 && scrolltop < f4_top - 200) {
+            isInf3 = true;
+            console.log('进入了f3层');
+            
+            $('#f3').addClass('cur');
+
+        } else if (isInf3 && (scrolltop > f4_top - 200 || scrolltop < f3_top - 1000)) {
+            console.log('离开了f3层');
+            isInf3 = false;
+            $('#f3').removeClass('cur')
+        }
+        if(scrolltop>2210&&scrolltop<2500){
+            $('#f3').addClass('cur1');
+            $('#f3').removeClass('cur2');
+            $('#f3').removeClass('cur3');
+        }
+        if(scrolltop>2500&&scrolltop<2800){
+            $('#f3').removeClass('cur1');
+            $('#f3').removeClass('cur3');
+            $('#f3').addClass('cur2');
+        }
+        if(scrolltop>2800&&scrolltop<3100){
+            $('#f3').removeClass('cur1');
+            $('#f3').removeClass('cur2');
+            $('#f3').addClass('cur3');
+        }
+        if(scrolltop>3100){
+            $('#f3').removeClass('cur1');
+            $('#f3').removeClass('cur2');
+            $('#f3').removeClass('cur3');
+
+            
+
+           
+        }
+    })
+
+</script>
+
+</html>
